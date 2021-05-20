@@ -1,16 +1,12 @@
-package com.ashutosh.cabbooking.data.dto.request;
+package com.ashutosh.cabbooking.data.dto.response;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 @Data
-@AllArgsConstructor
 @Accessors(chain = true)
-public class CabRequest {
+public class CabResponse {
     private int cabId;
     private String cabName;
     private int cityId;
-
 }

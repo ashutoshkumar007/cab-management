@@ -5,6 +5,8 @@ import com.ashutosh.cabbooking.repository.CabRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CabRepoService {
     @Autowired
@@ -12,5 +14,9 @@ public class CabRepoService {
 
     public void saveCab(Cab cab){
         cabRepository.save(cab);
+    }
+
+    public List<Cab> getAllCabs(){
+        return cabRepository.findAll();
     }
 }

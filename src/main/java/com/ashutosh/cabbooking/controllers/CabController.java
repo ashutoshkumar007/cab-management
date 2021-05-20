@@ -6,11 +6,10 @@ import com.ashutosh.cabbooking.data.entities.Cab;
 import com.ashutosh.cabbooking.services.CabService;
 import com.ashutosh.cabbooking.services.CabStateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.ashutosh.cabbooking.config.Constants;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(Constants.API_BASE_PATH + "/cab")
@@ -35,6 +34,11 @@ public class CabController {
     @PostMapping(path = "/city")
     public Cab changeCabCurrentCity(@RequestBody int cabId, int cityId){
         return cabService.changeCabCurrentCity(cabId);
+    }
+
+    @GetMapping
+    public List<Cab> getAllCabs(){
+        return cabService.getAllCabs();
     }
 
 

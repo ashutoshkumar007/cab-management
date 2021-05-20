@@ -1,18 +1,16 @@
 package com.ashutosh.cabbooking.data.entities;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 @Data
-@Getter
-@Setter
+@Accessors(chain = true)
 public class Cab {
     @Id
     private int cabId;
-    private String cabNumber;
+    private String cabName;
 }
