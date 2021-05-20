@@ -1,18 +1,13 @@
-package com.ashutosh.cabbooking.data.entities;
+package com.ashutosh.cabbooking.data.dto.request;
 
 import com.ashutosh.cabbooking.data.enums.CabStatus;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 @Data
 @Accessors(chain = true)
-public class Cab {
-    @Id
+public class CabInfoRequest {
     private int cabId;
-    private String cabName;
+    private int cityId;
     private CabStatus cabStatus;
 }

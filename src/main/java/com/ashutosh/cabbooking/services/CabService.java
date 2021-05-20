@@ -8,8 +8,8 @@ import java.util.List;
 
 @Service
 public interface CabService {
-    Cab registerCab(CabRequest cabRequest);
-    Cab changeCabCurrentCity(int cityId);
+    void registerCab(CabRequest cabRequest);
+    void changeCabCurrentCity(int cabId,int cityId);
     List<Cab> getAllCabs();
 }
 

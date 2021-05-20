@@ -3,6 +3,7 @@ package com.ashutosh.cabbooking.services.impl;
 import com.ashutosh.cabbooking.data.dto.request.CabRequest;
 import com.ashutosh.cabbooking.data.entities.Cab;
 import com.ashutosh.cabbooking.data.entities.CabInfo;
+import com.ashutosh.cabbooking.data.enums.CabStatus;
 import com.ashutosh.cabbooking.services.CabService;
 import com.ashutosh.cabbooking.services.repository.CabInfoRepoService;
 import com.ashutosh.cabbooking.services.repository.CabRepoService;
@@ -20,16 +21,20 @@ public class CabServiceImpl implements CabService {
     private CabInfoRepoService cabInfoRepoService;
 
     @Override
-    public Cab registerCab(CabRequest cabRequest) {
+    public void registerCab(CabRequest cabRequest) {
 
-        cabRepoService.saveCab(new Cab().setCabId(cabRequest.getCabId()).setCabName(cabRequest.getCabName()));
-        cabInfoRepoService.saveCabInfo(new CabInfo().setCabId(cabRequest.getCabId()).setCityId(cabRequest.getCityId()));
-        return null;
+        cabRepoService.saveCab(new Cab().setCabId(cabRequest.getCabId())
+                .setCabName(cabRequest.getCabName())
+                .setCabStatus(CabStatus.IDLE));
+        cabInfoRepoService.saveCabInfo(new CabInfo().setCabId(cabRequest.getCabId())
+                .setCityId(cabRequest.getCityId()));
     }
 
     @Override
-    public Cab changeCabCurrentCity(int cityId) {
-        return null;
+    public void changeCabCurrentCity(int cabId,int cityId) {
+        cabInfoRepoService.saveCabInfo(new CabInfo()
+        .setCabId(cabId)
+        .setCityId(cityId));
     }
 
     @Override
