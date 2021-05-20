@@ -1,0 +1,13 @@
+server:
+  port: 8035
+
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: CabBookingService
+  jpa:
+    hibernate:
+      ddl-auto: update
+
