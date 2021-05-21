@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookingServiceImpl implements BookingService {
     @Override
-    public Booking bookCab(int cityId) {
+    public Booking bookCab(int startCityId, int destCityId) {
         return null;
     }
 }

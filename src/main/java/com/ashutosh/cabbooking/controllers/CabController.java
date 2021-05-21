@@ -14,7 +14,7 @@ import com.ashutosh.cabbooking.config.Constants;
 import java.util.List;
 
 @RestController
-@RequestMapping(Constants.API_BASE_PATH + "/cab")
+@RequestMapping(Constants.API_BASE_PATH + "/cabs")
 public class CabController {
 
     @Autowired

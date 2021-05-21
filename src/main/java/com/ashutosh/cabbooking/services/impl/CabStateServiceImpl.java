@@ -15,8 +15,9 @@ public class CabStateServiceImpl implements CabStateService {
 
     @Override
     public void changeCabState(int cabId, CabStatus cabStatus) {
-        cabInfoRepoService.saveCabInfo(new CabInfo()
+        CabInfo cabInfo = cabInfoRepoService.saveCabInfo(new CabInfo()
                 .setCabId(cabId)
                 .setCabStatus(cabStatus));
+        System.out.println(cabInfo.getCabStatus());
     }
 }

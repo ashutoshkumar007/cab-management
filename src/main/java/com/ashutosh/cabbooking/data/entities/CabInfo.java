@@ -16,6 +16,7 @@ public class CabInfo {
     @Id
     private int cabId;
     private int cityId;
+
     @Enumerated(EnumType.ORDINAL)
     private CabStatus cabStatus;
 

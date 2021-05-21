@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface BookingService {
-    Booking bookCab(int cityId);
+    Booking bookCab(int startCityId,int destCityId);
 }

@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController(Constants.API_BASE_PATH +"/booking")
+@RestController(Constants.API_BASE_PATH +"/bookings")
 public class BookingController {
     @Autowired
     BookingService bookingService;
 
     @GetMapping
-    public Booking bookCab(@RequestBody int cityId){
-        return bookingService.bookCab(cityId);
+    public Booking bookCab(@RequestBody int startCityId, int destCityId){
+        return bookingService.bookCab(startCityId,destCityId);
     }
 }
