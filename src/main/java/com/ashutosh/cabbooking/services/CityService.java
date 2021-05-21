@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface CityService {
-    boolean addCity(City city);
+    City addCity(City city);
 }

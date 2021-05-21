@@ -2,12 +2,15 @@ package com.ashutosh.cabbooking.controllers;
 
 import com.ashutosh.cabbooking.data.dto.request.CabInfoRequest;
 import com.ashutosh.cabbooking.data.dto.request.CabRequest;
+import com.ashutosh.cabbooking.data.dto.response.CabInfoResponse;
 import com.ashutosh.cabbooking.data.entities.Cab;
 import com.ashutosh.cabbooking.data.entities.CabInfo;
-import com.ashutosh.cabbooking.data.enums.CabStatus;
+import com.ashutosh.cabbooking.exception.CabNotFoundException;
 import com.ashutosh.cabbooking.services.CabService;
-import com.ashutosh.cabbooking.services.CabStateService;
+import com.ashutosh.cabbooking.services.CabInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.ashutosh.cabbooking.config.Constants;
 
@@ -21,21 +24,23 @@ public class CabController {
     CabService cabService;
 
     @Autowired
-    CabStateService cabStateService;
+    CabInfoService cabInfoService;
 
     @PostMapping
-    public void registerCab(@RequestBody CabRequest cabRequest){
-         cabService.registerCab(cabRequest);
+    public ResponseEntity<CabInfoResponse> registerCab(@RequestBody CabRequest cabRequest){
+         return new ResponseEntity( cabService.registerCab(cabRequest),HttpStatus.CREATED);
     }
 
-    @PostMapping(path = "/state")
-    public void changeCabState(@RequestBody CabInfoRequest cabInfoRequest){
-         cabStateService.changeCabState(cabInfoRequest.getCabId(),cabInfoRequest.getCabStatus());
+    @PutMapping(path = "/state")
+    public ResponseEntity<CabInfo> changeCabState(@RequestBody CabInfoRequest cabInfoRequest) throws CabNotFoundException {
+         return new ResponseEntity(cabInfoService
+                 .changeCabState(cabInfoRequest.getCabId(),cabInfoRequest.getCabStatus()), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/city")
-    public void changeCabCurrentCity(@RequestBody CabInfoRequest cabInfoRequest){
-         cabService.changeCabCurrentCity(cabInfoRequest.getCabId(),cabInfoRequest.getCityId());
+    @PutMapping(path = "/city")
+    public ResponseEntity<CabInfo> changeCabCurrentCity(@RequestBody CabInfoRequest cabInfoRequest) throws CabNotFoundException {
+        return new ResponseEntity (cabInfoService
+                .changeCabCurrentCity(cabInfoRequest.getCabId(),cabInfoRequest.getCityId()), HttpStatus.OK);
     }
 
     @GetMapping

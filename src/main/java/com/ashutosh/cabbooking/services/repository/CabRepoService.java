@@ -12,8 +12,8 @@ public class CabRepoService {
     @Autowired
     CabRepository cabRepository;
 
-    public void saveCab(Cab cab){
-        cabRepository.save(cab);
+    public Cab saveCab(Cab cab){
+        return cabRepository.save(cab);
     }
 
     public List<Cab> getAllCabs(){

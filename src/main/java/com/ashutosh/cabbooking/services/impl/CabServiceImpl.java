@@ -1,6 +1,7 @@
 package com.ashutosh.cabbooking.services.impl;
 
 import com.ashutosh.cabbooking.data.dto.request.CabRequest;
+import com.ashutosh.cabbooking.data.dto.response.CabInfoResponse;
 import com.ashutosh.cabbooking.data.entities.Cab;
 import com.ashutosh.cabbooking.data.entities.CabInfo;
 import com.ashutosh.cabbooking.data.enums.CabStatus;
@@ -21,21 +22,20 @@ public class CabServiceImpl implements CabService {
     private CabInfoRepoService cabInfoRepoService;
 
     @Override
-    public void registerCab(CabRequest cabRequest) {
+    public CabInfoResponse registerCab(CabRequest cabRequest) {
 
-        cabRepoService.saveCab(new Cab().setCabId(cabRequest.getCabId())
+        Cab cab = cabRepoService.saveCab(new Cab().setCabId(cabRequest.getCabId())
                 .setCabName(cabRequest.getCabName())
                 .setCabStatus(CabStatus.IDLE));
-        cabInfoRepoService.saveCabInfo(new CabInfo().setCabId(cabRequest.getCabId())
+        CabInfo cabInfo = cabInfoRepoService.saveCabInfo(new CabInfo().setCabId(cabRequest.getCabId())
                 .setCityId(cabRequest.getCityId()));
+        return new CabInfoResponse().setCabId(cab.getCabId())
+                .setCabName(cab.getCabName())
+                .setCityId(cabInfo.getCityId())
+                .setCabStatus(cab.getCabStatus());
+
     }
 
-    @Override
-    public void changeCabCurrentCity(int cabId,int cityId) {
-        cabInfoRepoService.saveCabInfo(new CabInfo()
-        .setCabId(cabId)
-        .setCityId(cityId));
-    }
 
     @Override
     public List<Cab> getAllCabs() {

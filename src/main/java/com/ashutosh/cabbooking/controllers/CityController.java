@@ -4,6 +4,8 @@ import com.ashutosh.cabbooking.config.Constants;
 import com.ashutosh.cabbooking.data.entities.City;
 import com.ashutosh.cabbooking.services.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +16,7 @@ public class CityController {
     CityService cityService;
 
     @PostMapping
-    public boolean onboardCity(@RequestBody City city){
-        return cityService.addCity(city);
+    public ResponseEntity<City> onboardCity(@RequestBody City city){
+        return new ResponseEntity(cityService.addCity(city), HttpStatus.CREATED);
     }
 }
