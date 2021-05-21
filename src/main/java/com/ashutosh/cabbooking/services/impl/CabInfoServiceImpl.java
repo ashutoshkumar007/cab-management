@@ -17,6 +17,11 @@ public class CabInfoServiceImpl implements CabInfoService {
     CabInfoRepoService cabInfoRepoService;
 
     @Override
+    public CabInfo saveCabInfo(CabInfo cabInfo) {
+        return cabInfoRepoService.saveCabInfo(cabInfo);
+    }
+
+    @Override
     public CabInfo changeCabState(int cabId, CabStatus cabStatus) throws CabNotFoundException {
         Optional<CabInfo> cabInfo= cabInfoRepoService.getCabInfoByCabId(cabId);
         if(cabInfo.isPresent()){
@@ -35,5 +40,10 @@ public class CabInfoServiceImpl implements CabInfoService {
         }else{
             throw new CabNotFoundException();
         }
+    }
+
+    @Override
+    public int searchCab(int startCityId){
+        return 2;
     }
 }
