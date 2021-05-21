@@ -1,6 +1,6 @@
 package com.ashutosh.cabbooking.data.entities;
 
-import com.ashutosh.cabbooking.data.enums.CabStatus;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -13,7 +13,4 @@ public class Cab {
     @Id
     private int cabId;
     private String cabName;
-
-    @Enumerated(EnumType.ORDINAL)
-    private CabStatus cabStatus;
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController(Constants.API_BASE_PATH +"/bookings")
+@RestController(Constants.API_BASE_PATH +"/bookings/alpha")
 public class BookingController {
     @Autowired
     BookingService bookingService;

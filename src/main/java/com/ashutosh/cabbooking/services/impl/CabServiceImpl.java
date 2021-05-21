@@ -25,14 +25,14 @@ public class CabServiceImpl implements CabService {
     public CabInfoResponse registerCab(CabRequest cabRequest) {
 
         Cab cab = cabRepoService.saveCab(new Cab().setCabId(cabRequest.getCabId())
-                .setCabName(cabRequest.getCabName())
-                .setCabStatus(CabStatus.IDLE));
+                .setCabName(cabRequest.getCabName()));
         CabInfo cabInfo = cabInfoRepoService.saveCabInfo(new CabInfo().setCabId(cabRequest.getCabId())
-                .setCityId(cabRequest.getCityId()));
+                .setCityId(cabRequest.getCityId())
+                .setCabStatus(CabStatus.IDLE));
         return new CabInfoResponse().setCabId(cab.getCabId())
                 .setCabName(cab.getCabName())
                 .setCityId(cabInfo.getCityId())
-                .setCabStatus(cab.getCabStatus());
+                .setCabStatus(cabInfo.getCabStatus());
 
     }
 

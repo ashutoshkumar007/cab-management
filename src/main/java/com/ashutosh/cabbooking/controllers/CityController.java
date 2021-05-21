@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController(Constants.API_BASE_PATH + "/city")
+@RestController(Constants.API_BASE_PATH)
 public class CityController {
     @Autowired
     CityService cityService;
 
-    @PostMapping
+    @PostMapping("/city")
     public ResponseEntity<City> onboardCity(@RequestBody City city){
         return new ResponseEntity(cityService.addCity(city), HttpStatus.CREATED);
     }
